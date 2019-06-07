@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Hello, World I'm WhatsAppBOT for that supplies movies and series description"
+    return "Hello, World I'm WhatsAppBOT that supplies movies and series description!"
 
 @app.route("/sms", methods=['POST'])
 def sms_reply():
