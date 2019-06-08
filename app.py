@@ -22,14 +22,21 @@ def sms_reply():
 
     resp = MessagingResponse()
     news, type1, str1, poster = fetch_reply(msg, sender)
-
-    if(type1 == 'movie'):
-        resp.message(str1).media(poster)
-        database.insert_db(news)
-    elif(type1 == 'series'):
-        resp.message(str1).media(poster)
-    elif(type1 == 'favorite'):
-        resp.message(str1)
+    try:
+        if(poster == 'N/A'):
+            raise Exception
+        else:
+            if(type1 == 'movie'):
+                resp.message(str1).media(poster)
+                database.insert_db(news)
+            elif(type1 == 'series'):
+                resp.message(str1).media(poster)
+            elif(type1 == 'favorite'):
+                resp.message(str1)
+    except Exception:
+        print("exception handled")
+        resp.message("Oops! Couldn't find everything but here you go." +str1)
+     # resp.message(str1)
     return str(resp)
 
 
