@@ -18,10 +18,15 @@ def get_new_movie(parameters):
 	movie_title = parameters.get('movie_title')
 	year = parameters.get('year')
 	language = parameters.get('language')
-	news = dict(client.get(title=movie_title, year=year, language=language, tomatoes=True))
-	type1 = news['type']
-	poster_url = news['poster']
-	str1 = f"\n\nPlot:\n{news['plot']}\n\nThis movie has its release in {news['year']} directed by {news['director']} with actors {news['actors']} and got {news['awards']} "
+	news = dict(client.get(title=movie_title, year=year, tomatoes=True))
+	if(news != {}):
+		type1 = news['type']
+		poster_url = news['poster']
+		str1 = f"\n\nPlot:\n{news['plot']}\n\nThis movie has its release in {news['year']} directed by {news['director']} with actors {news['actors']} and got {news['awards']} "
+	else:
+		type1 = None
+		poster_url = None
+		str1 = ""
 	return news, type1, str1, poster_url
 
 
@@ -29,9 +34,14 @@ def get_new_series(parameters):
 	print(parameters)
 	series_title = parameters['series_title']
 	news = client.search_series(series_title)
-	type1 = news[0]['type']
-	poster_url = news[0]['poster']
-	str1 = f"\n\nThis series {news[0]['title']} has its release in {news[0]['year']} "
+	if(news != []):
+		type1 = news[0]['type']
+		poster_url = news[0]['poster']
+		str1 = f"\n\nThis series {news[0]['title']} has its release in {news[0]['year']} "
+	else:
+		type1 = None
+		poster_url = None
+		str1 = ""
 	return news, type1, str1, poster_url
 
 

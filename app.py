@@ -3,7 +3,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 from utils import fetch_reply
 import database
 import exception
-
+import requests
 
 app = Flask(__name__)
 
@@ -41,7 +41,6 @@ def sms_reply():
     except Exception:
         print("exception handled")
         resp.message("Oops! Couldn't find everything but here you go." + str1)
-    
     # resp.message(str1)
     return str(resp)
 
