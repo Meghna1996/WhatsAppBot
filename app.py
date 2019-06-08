@@ -2,6 +2,7 @@ from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 from utils import fetch_reply
 import database
+import exception
 
 
 app = Flask(__name__)
@@ -23,8 +24,10 @@ def sms_reply():
     resp = MessagingResponse()
     news, type1, str1, poster = fetch_reply(msg, sender)
     try:
-        if(poster == 'N/A' or news == {} or news == []):
+        if(poster == 'N/A'):
             raise Exception
+        elif(news == {} or news == []):
+            raise exception.TitleDoesntExist
         else:
             if(type1 == 'movie'):
                 resp.message(str1).media(poster)
@@ -36,6 +39,8 @@ def sms_reply():
     except Exception:
         print("exception handled")
         resp.message("Oops! Couldn't find everything but here you go." +str1)
+    except exception.TitleDoesntExist:
+        print("Sorry couldn't find anything on this title! Try something else maybe? :)")
      # resp.message(str1)
     return str(resp)
 
