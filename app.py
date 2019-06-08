@@ -40,7 +40,7 @@ def sms_reply():
         resp.message("Sorry couldn't find anything on this title! Try something else maybe? :)")
     except Exception:
         print("exception handled")
-        resp.message("Oops! Couldn't find everything but here you go." +str1)
+        resp.message("Oops! Couldn't find everything but here you go." + str1)
     
     # resp.message(str1)
     return str(resp)
