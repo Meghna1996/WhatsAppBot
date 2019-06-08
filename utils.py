@@ -17,7 +17,8 @@ def get_new_movie(parameters):
 	print('dshgddhajk')
 	movie_title = parameters.get('movie_title')
 	year = parameters.get('year')
-	news = dict(client.get(title=movie_title,year=year, tomatoes=True))
+	language = parameters.get('language')
+	news = dict(client.get(title=movie_title, year=year, language=language, tomatoes=True))
 	type1 = news['type']
 	poster_url = news['poster']
 	str1 = f"\n\nPlot:\n{news['plot']}\n\nThis movie has its release in {news['year']} directed by {news['director']} with actors {news['actors']} and got {news['awards']} "
