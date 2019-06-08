@@ -36,11 +36,12 @@ def sms_reply():
                 resp.message(str1).media(poster)
             elif(type1 == 'favorite'):
                 resp.message(str1)
+    except exception.TitleDoesntExist:
+        resp.message("Sorry couldn't find anything on this title! Try something else maybe? :)")
     except Exception:
         print("exception handled")
         resp.message("Oops! Couldn't find everything but here you go." +str1)
-    except exception.TitleDoesntExist:
-        resp.message("Sorry couldn't find anything on this title! Try something else maybe? :)")
+    
     # resp.message(str1)
     return str(resp)
 
