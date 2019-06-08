@@ -40,7 +40,7 @@ def sms_reply():
         print("exception handled")
         resp.message("Oops! Couldn't find everything but here you go." +str1)
     except exception.TitleDoesntExist:
-        print("Sorry couldn't find anything on this title! Try something else maybe? :)")
+        resp.message("Sorry couldn't find anything on this title! Try something else maybe? :)")
      # resp.message(str1)
     return str(resp)
 
