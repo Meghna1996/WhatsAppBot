@@ -24,10 +24,10 @@ def sms_reply():
     resp = MessagingResponse()
     news, type1, str1, poster = fetch_reply(msg, sender)
     try:
-        if(poster == 'N/A'):
-            raise Exception
-        elif(news == {} or news == []):
+        if(news == {} or news == []):
             raise exception.TitleDoesntExist
+        elif(poster == 'N/A'):
+            raise Exception
         else:
             if(type1 == 'movie'):
                 resp.message(str1).media(poster)
@@ -41,7 +41,7 @@ def sms_reply():
         resp.message("Oops! Couldn't find everything but here you go." +str1)
     except exception.TitleDoesntExist:
         resp.message("Sorry couldn't find anything on this title! Try something else maybe? :)")
-     # resp.message(str1)
+    # resp.message(str1)
     return str(resp)
 
 
