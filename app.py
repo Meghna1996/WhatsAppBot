@@ -23,7 +23,7 @@ def sms_reply():
     resp = MessagingResponse()
     news, type1, str1, poster = fetch_reply(msg, sender)
     try:
-        if(poster == 'N/A'):
+        if(poster == 'N/A' or news == {} or news == []):
             raise Exception
         else:
             if(type1 == 'movie'):
