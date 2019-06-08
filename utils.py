@@ -35,7 +35,7 @@ def get_new_series(parameters):
 
 def get_favorite_movie(parameters):
 	characteristics = parameters['characteristics']
-	favorite = database.get_favorite(characteristics)
+	favorite = database.get_favorite_movie(characteristics)
 	str1 = f"Your favorite {characteristics} is/are {favorite}!"
 	type1 = 'favorite'
 	news = None
@@ -60,7 +60,7 @@ def fetch_reply(msg, session_id):
 		return get_new_series(response.parameters)
 
 	elif response.intent.display_name == 'favorite':
-		return get_favorite(response.parameters)
+		return get_favorite_movie(response.parameters)
 
 	else:
 		return response.fulfillment_text
