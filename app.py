@@ -3,7 +3,6 @@ from twilio.twiml.messaging_response import MessagingResponse
 from utils import fetch_reply
 import database
 import exception
-import requests
 
 app = Flask(__name__)
 
@@ -11,6 +10,7 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
     return "Hello, World I'm WhatsAppBOT2 that supplies movies and series description!"
+
 
 
 @app.route("/smss", methods=['POST'])
@@ -23,6 +23,7 @@ def sms_reply():
 
     resp = MessagingResponse()
     news, type1, str1, poster = fetch_reply(msg, sender)
+
     try:
         if(news == {} or news == []):
             raise exception.TitleDoesntExist
@@ -33,6 +34,7 @@ def sms_reply():
                 resp.message(str1).media(poster)
                 database.insert_db(news)
             elif(type1 == 'series'):
+                print("inside series ")
                 resp.message(str1).media(poster)
             elif(type1 == 'favorite'):
                 resp.message(str1)
@@ -42,8 +44,9 @@ def sms_reply():
         print("exception handled")
         resp.message("Oops! Couldn't find everything but here you go." + str1)
     # resp.message(str1)
+    print("im here above printing response")
+    print(type1, str1, poster)
     return str(resp)
-
 
 if __name__ == "__main__":
     app.run(debug=True)
