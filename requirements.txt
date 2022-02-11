@@ -17,7 +17,7 @@ MarkupSafe==1.1.1
 numpy==1.16.4
 omdb==0.10.1
 opencv-python==4.1.0.25
-protobuf==3.8.0
+protobuf==3.15.0
 pyasn1==0.4.5
 pyasn1-modules==0.2.5
 PyJWT==1.7.1
